@@ -18,6 +18,7 @@ dependencies:
     version: "*"
   esp-idf-lib/esp_idf_lib_helpers:
     version: "*"
+maintainers: Ruslan V. Uss (@UncleRus) <unclerus@gmail.com>
 url: https://github.com/esp-idf-lib/core
 repository: https://github.com/esp-idf-lib/pca9685
 documentation: https://esp-idf-lib.github.io/pca9685/
@@ -26,5 +27,3 @@ discussion: https://github.com/esp-idf-lib/core/discussions
 files:
   exclude:
     - docs/**/*
-maintainers:
-  - Ruslan V. Uss (@UncleRus) <unclerus@gmail.com>
