@@ -11,7 +11,7 @@ Driver for 16-channel, 12-bit PWM PCA9685.
 ## Installation
 
 ```sh
-idf.py add-dependency "esp-idf-lib/pca9685^1.0.0
+idf.py add-dependency esp-idf-lib/pca9685^1.0.0
 ```
 
 ## Support
