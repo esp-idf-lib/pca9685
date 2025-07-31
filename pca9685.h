@@ -240,7 +240,7 @@ esp_err_t pca9685_set_pwm_value(i2c_dev_t *dev, uint8_t channel, uint16_t val);
  * @return `ESP_OK` on success
  */
 esp_err_t pca9685_set_pwm_values(i2c_dev_t *dev, uint8_t first_ch, uint8_t channels,
-        const uint16_t *values);
+                                 const uint16_t *values);
 
 #ifdef __cplusplus
 }

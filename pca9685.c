@@ -278,7 +278,7 @@ esp_err_t pca9685_set_prescaler(i2c_dev_t *dev, uint8_t prescaler)
 {
     CHECK_ARG(dev);
     CHECK_ARG_LOGE(prescaler >= MIN_PRESCALER,
-            "Invalid prescaler value: (%" PRIu8 "), must be >= 3", prescaler);
+                   "Invalid prescaler value: (%" PRIu8 "), must be >= 3", prescaler);
 
     I2C_DEV_TAKE_MUTEX(dev);
     I2C_DEV_CHECK(dev, dev_sleep(dev, true));
@@ -307,8 +307,8 @@ esp_err_t pca9685_set_pwm_frequency(i2c_dev_t *dev, uint16_t freq)
 {
     uint32_t prescaler = round_div(INTERNAL_FREQ, (uint32_t)PCA9685_MAX_PWM_VALUE * freq) - 1;
     CHECK_ARG_LOGE(prescaler >= MIN_PRESCALER && prescaler <= MAX_PRESCALER,
-            "Invalid prescaler value (%" PRIu32 "), must be in (%d..%d)", prescaler,
-            MIN_PRESCALER, MAX_PRESCALER);
+                   "Invalid prescaler value (%" PRIu32 "), must be in (%d..%d)", prescaler,
+                   MIN_PRESCALER, MAX_PRESCALER);
     return pca9685_set_prescaler(dev, prescaler);
 }
 
@@ -316,9 +316,9 @@ esp_err_t pca9685_set_pwm_value(i2c_dev_t *dev, uint8_t channel, uint16_t val)
 {
     CHECK_ARG(dev);
     CHECK_ARG_LOGE(channel <= PCA9685_CHANNEL_ALL,
-            "Invalid channel %d, must be in (0..%d)", channel, PCA9685_CHANNEL_ALL);
+                   "Invalid channel %d, must be in (0..%d)", channel, PCA9685_CHANNEL_ALL);
     CHECK_ARG_LOGE(val <= PCA9685_MAX_PWM_VALUE,
-            "Invalid PWM value %d, must be in (0..PCA9685_MAX_PWM_VALUE)", val);
+                   "Invalid PWM value %d, must be in (0..PCA9685_MAX_PWM_VALUE)", val);
 
     uint8_t reg = channel == PCA9685_CHANNEL_ALL ? REG_ALL_LED : REG_LED_N(channel);
 
@@ -327,7 +327,8 @@ esp_err_t pca9685_set_pwm_value(i2c_dev_t *dev, uint8_t channel, uint16_t val)
 
     uint16_t raw = full_on ? 4095 : val;
 
-    uint8_t buf[4] = {
+    uint8_t buf[4] =
+    {
         0,
         full_on ? LED_FULL_ON_OFF : 0,
         raw,
@@ -342,11 +343,11 @@ esp_err_t pca9685_set_pwm_value(i2c_dev_t *dev, uint8_t channel, uint16_t val)
 }
 
 esp_err_t pca9685_set_pwm_values(i2c_dev_t *dev, uint8_t first_ch, uint8_t channels,
-        const uint16_t *values)
+                                 const uint16_t *values)
 {
     CHECK_ARG(values);
     CHECK_ARG_LOGE(channels > 0 && first_ch + channels - 1 < PCA9685_CHANNEL_ALL,
-            "Invalid first_ch or channels: (%d, %d)", first_ch, channels);
+                   "Invalid first_ch or channels: (%d, %d)", first_ch, channels);
 
 
     size_t size = channels * 4;
