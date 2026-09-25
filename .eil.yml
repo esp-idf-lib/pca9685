@@ -22,7 +22,7 @@ targets:
   - esp32p4
   - esp32c5
   - esp32c61
-license: BSD-3
+license: BSD-3-Clause
 copyrights:
   - name: UncleRus
     year: 2016
