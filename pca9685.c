@@ -291,8 +291,7 @@ esp_err_t pca9685_set_prescaler(i2c_dev_t *dev, uint8_t prescaler)
 
 esp_err_t pca9685_get_pwm_frequency(i2c_dev_t *dev, uint16_t *freq)
 {
-    CHECK_ARG(dev);
-    CHECK_ARG(freq);
+    CHECK_ARG(dev && freq);
 
     uint8_t prescale;
     I2C_DEV_TAKE_MUTEX(dev);
